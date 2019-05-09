@@ -1,0 +1,126 @@
+body {
+    font-family: sans-serif;
+    background-color: #ffff;
+    font-family: 'Roboto', sans-serif;
+  }
+  label,legend{
+    font-weight:bold
+  }
+  
+  .form-tambah,.contact-manager{
+    border:1px solid #ced4da;
+    box-shadow: 0 5px 5px #ced4da;
+    background-color: white;
+  
+  }
+  .tombol {
+    width:50%;
+    border-radius:0;
+    font-weight: bold;
+    font-size: 15px
+  }
+  .form-control{
+    border-radius:0
+  }
+  .search{
+    margin:20px;
+    display:inline-block;
+    border-radius:0;
+    padding-left: 40px
+  }
+  .cari {
+    position: relative;
+  }
+  .gambar{
+    position: absolute;
+    top:30%;
+    left:4%;
+    transform: translate(-30%/-5%);
+    width:30px;
+    height:auto
+  }
+  .filter{
+    margin:20px;
+    padding:10px;
+    color:#495057;
+    border-color: #ced4da;
+    background-color:transparent;
+    font-weight: bold;
+    border-radius:0;
+    font-size: 13px
+  }
+  
+  
+  .table{
+    font-size: 15px;
+    width:95%;
+    margin:10px
+  }
+  .table-bordered{
+    border:0;
+  }
+  .table-bordered thead th{
+    border-top:0px;
+    border-left:0px
+  }
+  .table-bordered tbody td{
+    border-bottom:0;
+    border-left:0
+  }
+  .table-bordered tbody td:nth-child(6){
+    border-right:0;
+    text-align :center
+  }
+  
+  /* #kolom-data #edit{
+    color:#66b9e0
+  } */
+  
+  .table a{
+    padding:5px
+  }
+  #edit:hover{
+    text-decoration: none;
+    background-color: #66b9e0;
+    color:#fff !important
+  }
+  #edit{
+    color:#66b9e0;
+    font-weight: bold;
+    border:1px solid #66b9e0;
+    padding: 5px 3px 5px 5px;
+    margin-right:10px;
+    font-size:13px
+  }
+  #edit i,#hapus i
+  {
+    margin-left:5px;
+  }
+  #hapus{
+    color:#dc3545;
+    font-weight: bold;
+    border:1px solid #dc3545;
+    font-size:13px
+    
+  }
+  #hapus:hover{
+    color:#fff !important;
+    text-decoration:none;
+    background-color: #dc3545
+  }
+  
+  .alert{
+    position: relative;
+    margin:5px
+  }
+  
+  .alert:before{
+    content: "";
+    position: absolute;
+    width:10px;
+    height:10px;
+    bottom:-5px;
+    left:20px;
+    background-color:#fff3cd;
+    transform:rotate(45deg)
+  }
