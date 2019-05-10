@@ -1,13 +1,4 @@
 
-let base_url;
-
-let url_set = 1;
-
-if (url_set == 1) {
-    base_url = "http://localhost:3000/contacts/";
-} else {
-    base_url = "https://5k6vj03zpl.sse.codesandbox.io/contacts";
-}
 selectedRow = null;
 function onFormSubmit() {
     if (validation()) {
@@ -18,7 +9,6 @@ function onFormSubmit() {
         else {
             let contact = myInput();
             updateRecord(contact)
-            resetForm()
         }
 
     } else {
@@ -27,10 +17,10 @@ function onFormSubmit() {
 
 }
 
-
+const url = "http://localhost:4000/contacts"
 function view() {
 
-    fetch(base_url)
+    fetch(url)
         .then((response) => response.json())
         .then((data) => data.map(item => {
             let tbody = document.getElementById("kolom-data");
@@ -81,7 +71,7 @@ const newPost = post => {
             'Content-Type': 'application/json'
         })
     }
-    return fetch(base_url, option)
+    return fetch(url, option)
         .then((respons) => respons.json())
         .then((data))
         .catch((error) => console.error(`error: ${error}`))
@@ -155,7 +145,7 @@ function updateRecord(contact) {
             "Content-Type": "application/json"
         }
     }
-    fetch(`${base_url}/${selectedRow.cells[0].innerHTML}`, option)
+    fetch(`${url}/${selectedRow.cells[0].innerHTML}`, option)
         .then((respons) => respons.json())
         .then((data) => console.log(data))
         .catch((error) => console.error(`error: ${error}`))
@@ -167,19 +157,12 @@ const remove = (id) => {
     const options = {
         method: "DELETE",
     }
-    fetch(`${base_url}/${id}`, options)
+    fetch(`${url}/${id}`, options)
         .catch((error) => console.error(`error: ${error}`))
 
 }
-// function untuk mengosongkan form input
-function resetForm() {
-    document.getElementById("fullName").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("gender").value = ""
-}
 
-
+// function search
 document.getElementById("search").addEventListener('keyup', e => {
     const inputValue = e.target.value;
 
