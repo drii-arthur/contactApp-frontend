@@ -23,7 +23,7 @@ function view() {
     fetch(url)
         .then((response) => response.json())
         .then((data) => data.map(item => {
-            let tbody = document.getElementById("kolom-data");
+            let tbody = document.getElementById("table-row");
             let row = tbody.insertRow();
             let id = row.insertCell(0);
             let fullName = row.insertCell(1);
@@ -38,7 +38,7 @@ function view() {
             email.innerHTML = item.email;
             gender.innerHTML = item.gender;
             action.innerHTML = `<a href="#" id="edit" onclick="onEdit(this)">Edit<i class='fas fa-pencil-alt'></i></a>
-                                <a href="#" id="hapus"  onclick="remove(`+ item.id + `);document.location.reload(true)">Delete<i class='fas fa-user-times'></i></a>`
+                                <a href="#" id="hapus"  onclick="remove(`+ item.id + `);document.location.reload()">Delete<i class='fas fa-user-times'></i></a>`
         }))
 
 
@@ -166,10 +166,10 @@ const remove = (id) => {
 document.getElementById("search").addEventListener('keyup', e => {
     const inputValue = e.target.value;
 
-    fetch(base_url)
+    fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            let tbody = document.getElementById("kolom-data")
+            let tbody = document.getElementById("table-row")
             tbody.innerHTML = "";
 
             data.map(item => {
@@ -195,16 +195,6 @@ document.getElementById("search").addEventListener('keyup', e => {
 
 })
 
-document.getElementById("gender").addEventListener('click', e => {
-    const filter = e.target.attributes[1].nodeValue;
-    if (filter == "female") {
-        fetch(`${base_url}?gender=female`)
-            .then((res) => res.json())
-            .then((data) => {
-                view(data)
-            })
-    }
-})
 
 
 view()

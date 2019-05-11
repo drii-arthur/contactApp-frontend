@@ -16,15 +16,24 @@
 </head>
 
 <body>
+    <div class="container-fluid header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Arkademy Project</h2>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="row mt-5 mb-3">
+        <div class="row mt-3 mb-3">
             <div class="col-md-12 text-center">
                 <h2 class="judul">Contact Manager</h2>
+                <hr>
             </div>
         </div>
 
         <div class="row">
-            <!-- kiri -->
             <div class="col-md-3 mb-5">
                 <div class="form-tambah pt-4">
                     <form onsubmit="onFormSubmit();">
@@ -36,15 +45,15 @@
                         </div>
 
                         <div class="form-group px-3">
-                            <label for="email">Email Address</label>
-                            <input type="email" name="email" class="form-control" id="email" />
-                            <code id="errEmail"></code>
-                        </div>
-
-                        <div class="form-group px-3">
                             <label for="number">Phone Number</label>
                             <input type="text" name="phoneNumber" class="form-control" id="phone" />
                             <code id="errPhone"></code>
+                        </div>
+
+                        <div class="form-group px-3">
+                            <label for="email">Email Address</label>
+                            <input type="email" name="email" class="form-control" id="email" />
+                            <code id="errEmail"></code>
                         </div>
 
                         <div class="form-group px-3">
@@ -65,21 +74,21 @@
                 </div>
             </div>
 
-            <!-- kanan -->
 
             <div class="col-md-9">
-                <!-- headernya -->
                 <div class="contact-manager py-4">
                     <div class="row">
                         <div class="col-md-9">
+                            <!-- search -->
                             <form action="#">
                                 <div class="form-group cari">
                                     <input type="text" name="search" class="form-control search" id="search"
-                                        placeholder="Search . . ." />
+                                        placeholder="Search By Name . . ." />
                                     <img src="icon.png" class="gambar">
                                 </div>
                             </form>
                         </div>
+                        <!-- end search -->
                         <div class="col-md-3">
                             <form action="#">
                                 <button type="button" class="btn btn-light text-secondary filter" data-toggle="modal"
@@ -87,7 +96,6 @@
                                     Filter By Gender
                                 </button>
 
-                                <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -124,24 +132,18 @@
                         <th scope="col" style="border-right:0"> </th>
                         </tr>
                         </thead>
-                        <tbody id="kolom-data">
+                        <tbody id="table-row">
 
                         </tbody>
                     </table>
 
                 </div>
             </div>
-            <!-- endheader -->
-
-            <!-- tablenya -->
-
-            <!-- end table -->
         </div>
     </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -149,7 +151,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="index.js">
+    <script src="script.js">
     </script>
     <!-- <script src="src/index.js"></script> -->
 </body>
