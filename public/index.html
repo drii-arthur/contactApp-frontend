@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-md-3 mb-5">
                 <div class="form-tambah pt-4">
-                    <form onsubmit="onFormSubmit();">
+                    <form>
                         <input type="hidden" id="id">
                         <div class="form-group px-3">
                             <label for="name">Full Name</label>
@@ -64,7 +64,8 @@
                             </select>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary tombol m-4" id="tambah">
+                            <button type="submit" class="btn btn-primary tombol m-4" id="tambah"
+                                onclick="onFormSubmit();event.preventDefault()">
                                 Save
                             </button>
                         </div>
@@ -90,11 +91,11 @@
                         </div>
                         <!-- end search -->
                         <div class="col-md-3">
-                            <form action="#">
-                                <button type="button" class="btn btn-light text-secondary filter" data-toggle="modal"
-                                    data-target="#exampleModal">
+                            <form action="#"> <button type="button" class="btn btn-light text-secondary filter"
+                                    data-toggle="modal" data-target="#exampleModal">
                                     Filter By Gender
                                 </button>
+                                <button class="btn btn-primary buttonAll" onclick="allData()">All</button>
 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -106,13 +107,16 @@
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
+
                                             </div>
                                             <div class="modal-body">
 
                                                 <button type="button" class="btn btn-primary" id="gender"
-                                                    data-val="male" data-dismiss="modal">Male</button>
+                                                    data-val="Male" data-dismiss="modal"
+                                                    onclick="filterMale()">Male</button>
                                                 <button type="button" class="btn btn-danger" id="gender"
-                                                    data-val="female" data-dismiss="modal">Female</button>
+                                                    data-val="Female" data-dismiss="modal"
+                                                    onclick="filterFemale()">Female</button>
                                             </div>
                                         </div>
                                     </div>
@@ -138,9 +142,42 @@
                     </table>
 
                 </div>
+
+
+                <!-- pagination -->
+                <nav aria-label="...">
+                    <ul class="pagination mt-2">
+                        <li class="page-item disabled">
+                            <span class="page-link">Prev</span>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="page">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">
+                                2
+                                <span class="sr-only">(current)</span>
+                            </span>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="page">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
+    </div>
+
+    <div class="container-fluid footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <footer>
+                        <p>Created By : Muhammad Pandriadi</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -153,7 +190,6 @@
         crossorigin="anonymous"></script>
     <script src="script.js">
     </script>
-    <!-- <script src="src/index.js"></script> -->
 </body>
 
 </html>

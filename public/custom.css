@@ -4,13 +4,17 @@ body {
     font-family: 'Roboto', sans-serif;
   }
 
-  .header{
+  .header,.footer{
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(0,212,255,1) 100%);
   }
   .header h2{
     color:#fff;
     padding:20px 0;
+  }
+  .footer p{
+    color:#fff;
+    padding-top:15px
   }
 
   label,legend{
@@ -30,7 +34,7 @@ body {
     font-size: 15px
   }
   .form-control{
-    border-radius:0
+    border-radius:0;
   }
   .search{
     margin:20px;
@@ -50,7 +54,7 @@ body {
     height:auto
   }
   .filter{
-    margin:20px;
+    margin:20px 20px 5px 20px;
     padding:10px;
     color:#495057;
     border-color: #ced4da;
@@ -58,6 +62,12 @@ body {
     font-weight: bold;
     border-radius:0;
     font-size: 13px
+  }
+
+  .buttonAll{
+    margin-left:20px;
+    padding:5px 20px
+    
   }
   
   

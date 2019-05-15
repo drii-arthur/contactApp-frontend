@@ -2,44 +2,47 @@
 selectedRow = null;
 function onFormSubmit() {
     if (validation()) {
-        let post = myInput();
         if (selectedRow == null) {
+            let post = myInput();
             newPost(post);
         }
         else {
             let contact = myInput();
             updateRecord(contact)
+            resetForm()
         }
-
-    } else {
-        event.preventDefault();
     }
-
 }
 
-const url = "http://localhost:4000/contacts"
-function view() {
+const url = "http://localhost:4000/contacts";
 
+function view() {
     fetch(url)
         .then((response) => response.json())
-        .then((data) => data.map(item => {
+        .then((data) => {
             let tbody = document.getElementById("table-row");
-            let row = tbody.insertRow();
-            let id = row.insertCell(0);
-            let fullName = row.insertCell(1);
-            let phoneNumber = row.insertCell(2);
-            let email = row.insertCell(3);
-            let gender = row.insertCell(4);
-            let action = row.insertCell(5);
+            tbody.innerHTML = "";
+            data.map(item => {
 
-            id.innerHTML = item.id;
-            fullName.innerHTML = item.fullName;
-            phoneNumber.innerHTML = item.phoneNumber;
-            email.innerHTML = item.email;
-            gender.innerHTML = item.gender;
-            action.innerHTML = `<a href="#" id="edit" onclick="onEdit(this)">Edit<i class='fas fa-pencil-alt'></i></a>
-                                <a href="#" id="hapus"  onclick="remove(`+ item.id + `);document.location.reload()">Delete<i class='fas fa-user-times'></i></a>`
-        }))
+                let row = tbody.insertRow();
+                let id = row.insertCell(0);
+                let fullName = row.insertCell(1);
+                let phoneNumber = row.insertCell(2);
+                let email = row.insertCell(3);
+                let gender = row.insertCell(4);
+                let action = row.insertCell(5);
+
+                id.innerHTML = item.id;
+                fullName.innerHTML = item.fullName;
+                phoneNumber.innerHTML = item.phoneNumber;
+                email.innerHTML = item.email;
+                gender.innerHTML = item.gender;
+                action.innerHTML = `<a href="#" id="edit" onclick="onEdit(this)">Edit<i class='fas fa-pencil-alt'></i></a>
+                                <a href="#" id="hapus"  onclick="remove(`+ item.id + `)">Delete<i class='fas fa-user-times'></i></a>`
+            })
+        }
+
+        )
 
 
 }
@@ -72,8 +75,7 @@ const newPost = post => {
         })
     }
     return fetch(url, option)
-        .then((respons) => respons.json())
-        .then((data))
+        .then((respons) => view())
         .catch((error) => console.error(`error: ${error}`))
 
 }
@@ -82,6 +84,7 @@ function validation() {
     let fullName = document.getElementById("fullName").value;
     let phoneNumber = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
+    let number = /^[0-9]+$/
     isValid = true;
     // jika input nama kosong
     if (fullName == "") {
@@ -104,7 +107,23 @@ function validation() {
         error.innerHTML = `<div class="alert alert-warning" role="alert">
         Nomor Telpon Tidak Boleh Kosong !
       </div>`
-    } else {
+    } else if (phoneNumber.length < 12) {
+        isValid = false;
+        // berikan pesan kesalahan
+        let error = document.getElementById("errPhone");
+        error.innerHTML = `<div class="alert alert-warning" role="alert">
+        Nomor Telpon Minimal 12 karakter !
+      </div>`
+    }
+    else if (!phoneNumber.match(number)) {
+        isValid = false;
+        // berikan pesan kesalahan
+        let error = document.getElementById("errPhone");
+        error.innerHTML = `<div class="alert alert-warning" role="alert">
+        Nomor Telpon Harus berupa angka !
+      </div>`
+    }
+    else {
         isValid = true;
         let error = document.getElementById("errPhone");
         error.innerHTML = "";
@@ -146,8 +165,7 @@ function updateRecord(contact) {
         }
     }
     fetch(`${url}/${selectedRow.cells[0].innerHTML}`, option)
-        .then((respons) => respons.json())
-        .then((data) => console.log(data))
+        .then((respons) => view())
         .catch((error) => console.error(`error: ${error}`))
 
 }
@@ -158,6 +176,7 @@ const remove = (id) => {
         method: "DELETE",
     }
     fetch(`${url}/${id}`, options)
+        .then((respons) => view())
         .catch((error) => console.error(`error: ${error}`))
 
 }
@@ -195,6 +214,100 @@ document.getElementById("search").addEventListener('keyup', e => {
 
 })
 
+// function filter
+
+const filterMale = () => {
+    fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+            let tbody = document.getElementById('table-row');
+            tbody.innerHTML = "";
+            data.map(item => {
+                if (item.gender == "Male") {
+                    let row = tbody.insertRow();
+                    let id = row.insertCell(0);
+                    let fullName = row.insertCell(1);
+                    let phoneNumber = row.insertCell(2);
+                    let email = row.insertCell(3);
+                    let gender = row.insertCell(4);
+                    let action = row.insertCell(5)
+
+                    id.innerHTML = item.id;
+                    fullName.innerHTML = item.fullName;
+                    phoneNumber.innerHTML = item.phoneNumber;
+                    email.innerHTML = item.email;
+                    gender.innerHTML = item.gender;
+                    action.innerHTML = `<a href="#" id="edit" onclick="onEdit(this)">Edit<i class='fas fa-pencil-alt'></i></a>
+                <a href="#" id="hapus"  onclick="remove(`+ item.id + `);document.location.reload(true)">Delete<i class='fas fa-user-times'></i></a>`
+                }
+            })
+        })
+}
+
+
+// filter
+
+const filterFemale = () => {
+    fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+            let tbody = document.getElementById('table-row');
+            tbody.innerHTML = "";
+            data.map(item => {
+                if (item.gender == "Female") {
+                    let row = tbody.insertRow();
+                    let id = row.insertCell(0);
+                    let fullName = row.insertCell(1);
+                    let phoneNumber = row.insertCell(2);
+                    let email = row.insertCell(3);
+                    let gender = row.insertCell(4);
+                    let action = row.insertCell(5)
+
+                    id.innerHTML = item.id;
+                    fullName.innerHTML = item.fullName;
+                    phoneNumber.innerHTML = item.phoneNumber;
+                    email.innerHTML = item.email;
+                    gender.innerHTML = item.gender;
+                    action.innerHTML = `<a href="#" id="edit" onclick="onEdit(this)">Edit<i class='fas fa-pencil-alt'></i></a>
+                <a href="" id="hapus"  onclick="remove(` + item.id + `);document.location.reload(true)">Delete<i class='fas fa-user-times'></i></a>`
+                }
+            })
+        })
+
+}
+
+const allData = () => {
+    fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+            let tbody = document.getElementById('table-row');
+            tbody.innerHTML = "";
+            data.map(item => {
+                let row = tbody.insertRow();
+                let id = row.insertCell(0);
+                let fullName = row.insertCell(1);
+                let phoneNumber = row.insertCell(2);
+                let email = row.insertCell(3);
+                let gender = row.insertCell(4);
+                let action = row.insertCell(5)
+
+                id.innerHTML = item.id;
+                fullName.innerHTML = item.fullName;
+                phoneNumber.innerHTML = item.phoneNumber;
+                email.innerHTML = item.email;
+                gender.innerHTML = item.gender;
+                action.innerHTML = `<a href="#" id="edit" onclick="onEdit(this)">Edit<i class='fas fa-pencil-alt'></i></a>
+                <a href="" id="hapus"  onclick="remove(` + item.id + `);document.location.reload(true)">Delete<i class='fas fa-user-times'></i></a>`
+            })
+        })
+
+}
+
+const resetForm = () => {
+    document.getElementById('fullName').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('email').value = ""
+}
 
 
 view()
