@@ -94,6 +94,7 @@ function validation() {
         error.innerHTML = `<div class="alert alert-warning" role="alert">
         Nama Tidak Boleh Kosong !
       </div>`
+        return false
     } else {
         // hilangkan pesan kesalahan
         isValid = true;
@@ -107,6 +108,7 @@ function validation() {
         error.innerHTML = `<div class="alert alert-warning" role="alert">
         Nomor Telpon Tidak Boleh Kosong !
       </div>`
+        return false;
     } else if (phoneNumber.length < 12) {
         isValid = false;
         // berikan pesan kesalahan
@@ -114,6 +116,7 @@ function validation() {
         error.innerHTML = `<div class="alert alert-warning" role="alert">
         Nomor Telpon Minimal 12 karakter !
       </div>`
+        return false;
     }
     else if (!phoneNumber.match(number)) {
         isValid = false;
@@ -122,6 +125,7 @@ function validation() {
         error.innerHTML = `<div class="alert alert-warning" role="alert">
         Nomor Telpon Harus berupa angka !
       </div>`
+        return false;
     }
     else {
         isValid = true;
@@ -135,6 +139,7 @@ function validation() {
         error.innerHTML = `<div class="alert alert-warning" role="alert">
         Email Tidak Boleh Kosong !
       </div>`
+        return false;
     } else {
         isValid = true;
         let error = document.getElementById("errEmail");
